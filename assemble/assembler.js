@@ -20,6 +20,7 @@ function assemble(type, options) {
         if ( status_result['required_color'] !== GREEN_CIRCLE || status_result['status_color'] !== GREEN_CIRCLE){
             slack_call(
     `:exclamation: 어라? 서버 상태를 확인 해봐야겠는데요?\n\n
+    \t\t\t서버 유형 : [${status_result['type'].toUpperCase()}]\n
     \t\t\t관측 시간 : [${(await measured_time_formatted).trim()}]\n
     \t\t\t${status_result['required_color']} 서버 응답 속도 : [${status_result['required_time']} 초]\n
     \t\t\t${status_result['status_color']} 서버 응답 코드 : [${status_result['status_code']}]`)
