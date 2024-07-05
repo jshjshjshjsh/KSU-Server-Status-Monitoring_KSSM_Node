@@ -1,4 +1,4 @@
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { initializeApp, applicationDefault, cert, getApps } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 const firestore = require("firebase-admin/firestore");
 
@@ -6,11 +6,13 @@ const firestore = require("firebase-admin/firestore");
 function call(measured_time, status_result){
 
     const serviceAccount = require('../serviceAccountKey.json');
-    var firestore = require("firebase-admin/firestore");
 
-    initializeApp({
-        credential: cert(serviceAccount)
-    });
+    // Check if Firebase apps are already initialized
+    if (!getApps().length) {
+        initializeApp({
+            credential: cert(serviceAccount)
+        });
+    }
 
 
     return request(measured_time, status_result);
@@ -31,7 +33,7 @@ async function request(measured_time, status_result) {// 현재 날짜와 시간
 
     const db = firestore.getFirestore();
     db.collection("KSSM_NODE").doc(formattedDate).set({
-        measured_time: measured_time,
+        measured_time: new Date(measured_time.getTime() - 9 * 60 * 60 * 1000),
         type: status_result['type'],
         status_code: status_result['status_code'],
         status_color: status_result['status_color'],
