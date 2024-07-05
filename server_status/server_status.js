@@ -1,5 +1,9 @@
 const https = require('https');
 
+const RED_CIRCLE = ':red_circle:'
+const ORANGE_CIRCLE = ':large_orange_circle:'
+const GREEN_CIRCLE = ':large_green_circle:'
+
 function httpsRequest(url, options) {
     return new Promise((resolve, reject) => {
         const req = https.request(url, options, (res) => {
@@ -46,7 +50,37 @@ async function server_check_request(type, options, measured_time) {
 
     let finish_time = new Date();
     required_time = (finish_time - measured_time) / 1000;
-    return { required_time: required_time, status_code: status_code, type: type };
+
+    let required_color = response_time_color_result(required_time);
+    let status_color = response_code_color_result(status_code);
+
+    return { required_color: required_color, required_time: required_time, status_color: status_color, status_code: status_code, type: type };
 }
 
-module.exports = server_check_request;
+function response_time_color_result(required_time){
+    let RED_TIME = 5;
+    let ORANGE_TIME = 2.5;
+
+    if (required_time >= RED_TIME){
+        return RED_CIRCLE;
+    }
+    if (required_time >= ORANGE_TIME){
+        return ORANGE_CIRCLE;
+    }
+    return GREEN_CIRCLE;
+}
+
+function response_code_color_result(code){
+
+    if (code >= 200 && code < 300) {
+        return GREEN_CIRCLE;
+    }
+    return RED_CIRCLE;
+}
+
+module.exports = {
+    server_check_request,
+    RED_CIRCLE,
+    ORANGE_CIRCLE,
+    GREEN_CIRCLE
+};

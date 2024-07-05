@@ -131,5 +131,6 @@ dist
 
 nodejs
 nodejs.zip
-secret.py
+node_modules
+SECRETS.js
 serviceAccountKey.json

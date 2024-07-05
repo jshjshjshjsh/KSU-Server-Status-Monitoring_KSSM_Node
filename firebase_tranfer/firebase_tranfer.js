@@ -13,7 +13,7 @@ function call(measured_time, status_result){
     });
 
 
-    request(measured_time, status_result);
+    return request(measured_time, status_result);
 }
 
 async function request(measured_time, status_result) {// 현재 날짜와 시간을 가져오기
@@ -31,10 +31,15 @@ async function request(measured_time, status_result) {// 현재 날짜와 시간
 
     const db = firestore.getFirestore();
     db.collection("KSSM_NODE").doc(formattedDate).set({
+        measured_time: measured_time,
         type: status_result['type'],
         status_code: status_result['status_code'],
-        required_time: status_result['required_time']
+        status_color: status_result['status_color'],
+        required_time: status_result['required_time'],
+        required_color: status_result['required_color']
     });
+
+    return formattedDate;
 }
 
 module.exports = call;

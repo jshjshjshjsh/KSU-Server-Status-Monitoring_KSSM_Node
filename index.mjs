@@ -8,6 +8,7 @@ import assemble from "./assemble/assembler.js";
  * Will succeed with the response body.
  */
 
+
 export const handler = (event, context, callback) => {
     const options = {
         ...event.options,
@@ -20,3 +21,4 @@ export const handler = (event, context, callback) => {
 
 //const options = {};
 //assemble('portal', options)
+//assemble('homepage', options)

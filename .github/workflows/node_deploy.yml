@@ -26,10 +26,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: make SECRETS
+    - name: make SECRETS.js
       run: |
-        touch SECRETS
-        echo "${{ secrets.SECRETS }}" > SECRETS
+        touch SECRETS.js
+        echo "${{ secrets.SECRETS_JS }}" > SECRETS.js
         
     - name: make serviceAccountKey.json
       run: |
