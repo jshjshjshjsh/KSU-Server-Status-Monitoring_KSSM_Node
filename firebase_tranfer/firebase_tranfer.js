@@ -19,12 +19,12 @@ function call(measured_time, status_result){
 async function request(measured_time, status_result) {// 현재 날짜와 시간을 가져오기
 
     // 각 구성 요소를 가져오기
-    const year = measured_time.getFullYear();
-    const month = measured_time.getMonth() + 1;
-    const day = measured_time.getDate();
-    const hours = measured_time.getHours();
-    const minutes = measured_time.getMinutes();
-    const seconds = measured_time.getSeconds();
+    const year = measured_time.getUTCFullYear();
+    const month = measured_time.getUTCMonth() + 1;
+    const day = measured_time.getUTCDate();
+    const hours = measured_time.getUTCHours();
+    const minutes = measured_time.getUTCMinutes();
+    const seconds = measured_time.getUTCSeconds();
 
     // 날짜와 시간을 문자열로 포맷팅
     const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;

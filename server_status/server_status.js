@@ -27,7 +27,7 @@ function httpsRequest(url, options) {
     });
 }
 
-async function server_check_request(type, options, measured_time) {
+async function server_check_request(type, options) {
     let url = '';
 
     if (type === 'portal') {
@@ -49,7 +49,7 @@ async function server_check_request(type, options, measured_time) {
     }
 
     let finish_time = new Date();
-    required_time = (finish_time - measured_time) / 1000;
+    required_time = (finish_time - start_time) / 1000;
 
     let required_color = response_time_color_result(required_time);
     let status_color = response_code_color_result(status_code);

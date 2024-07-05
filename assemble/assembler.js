@@ -9,8 +9,8 @@ function assemble(type, options) {
     let measured_time = new Date();
 
     (async () => {
-        const measured_time = new Date();
-        const status_result = await server_check_request('portal', options, measured_time);
+        const measured_time = new Date(new Date().getTime() + 9 * 60 * 60 * 1000);
+        const status_result = await server_check_request('portal', options);
 
         status_result['required_color'] = ORANGE_CIRCLE
         // db에 저장
