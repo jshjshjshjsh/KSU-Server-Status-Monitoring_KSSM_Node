@@ -22,6 +22,6 @@ export const handler = (event, context, callback) => {
 
 
 // 하나 끝나고 하나 전송하게 변경하기
-//const options = {};
-//assemble('portal', options)
-//assemble('homepage', options)
+const options = {};
+assemble('portal', options)
+assemble('homepage', options)

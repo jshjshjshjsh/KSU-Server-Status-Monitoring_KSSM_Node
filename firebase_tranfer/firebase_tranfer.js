@@ -27,9 +27,10 @@ async function request(measured_time, status_result) {// 현재 날짜와 시간
     const hours = measured_time.getUTCHours();
     const minutes = measured_time.getUTCMinutes();
     const seconds = measured_time.getUTCSeconds();
+    const milliSeconds = measured_time.getUTCMilliseconds();
 
     // 날짜와 시간을 문자열로 포맷팅
-    const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliSeconds).padStart(3, '0')}`;
 
     const db = firestore.getFirestore();
     db.collection("KSSM_NODE").doc(formattedDate).set({

@@ -9,7 +9,9 @@ function assemble(type, options) {
         const measured_time = new Date(new Date().getTime() + 9 * 60 * 60 * 1000);
         const status_result = await server_check_request(type, options);
 
-        status_result['required_color'] = ORANGE_CIRCLE
+        // todo: 임시로 만든 값이기 때문에 삭제 필요
+        //status_result['required_color'] = ORANGE_CIRCLE
+
         // db에 저장
         let measured_time_formatted = call(measured_time, status_result);
 
