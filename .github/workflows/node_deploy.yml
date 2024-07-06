@@ -32,9 +32,10 @@ jobs:
         echo "${{ secrets.SECRETS_JS }}" > SECRETS.js
         
     - name: make serviceAccountKey.json
-      run: |
-        touch serviceAccountKey.json
-        echo "${{ secrets.SERVICEACCOUNTKEY_JSON }}" > serviceAccountKey.json
+      uses: jsdaniell/create-json@1.1.2
+      with:
+        name: "serviceAccountKey.json"
+        json: ${{ secrets.SERVICEACCOUNTKEY_JSON }}
         
     - name: Set up zip
       run: sudo apt-get install zip -y
