@@ -43,6 +43,7 @@ async function server_check_request(type, options) {
     try {
         const res = await httpsRequest(url, options);
         status_code = res.statusCode;
+        console.log(url);
     } catch (err) {
         console.error('Error:', err);
         return { required_time: 1, status_code: 500 };

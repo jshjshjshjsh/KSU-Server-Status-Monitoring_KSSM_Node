@@ -5,12 +5,9 @@ const slack_call = require('../slack/slack_tranfer.js');
 
 function assemble(type, options) {
 
-    // 시작 시간
-    let measured_time = new Date();
-
     (async () => {
         const measured_time = new Date(new Date().getTime() + 9 * 60 * 60 * 1000);
-        const status_result = await server_check_request('portal', options);
+        const status_result = await server_check_request(type, options);
 
         status_result['required_color'] = ORANGE_CIRCLE
         // db에 저장
