@@ -52,10 +52,7 @@ async function server_check_request(type, options) {
     let finish_time = new Date();
     required_time = (finish_time - start_time) / 1000;
 
-    let required_color = response_time_color_result(required_time);
-    let status_color = response_code_color_result(status_code);
-
-    return { required_color: required_color, required_time: required_time, status_color: status_color, status_code: status_code, type: type };
+    return { required_time: required_time, status_code: status_code, type: type };
 }
 
 function response_time_color_result(required_time){
@@ -81,6 +78,8 @@ function response_code_color_result(code){
 
 module.exports = {
     server_check_request,
+    response_time_color_result,
+    response_code_color_result,
     RED_CIRCLE,
     ORANGE_CIRCLE,
     GREEN_CIRCLE
